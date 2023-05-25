@@ -1,0 +1,82 @@
+[
+    {
+      "nom": "Dupont",
+      "prenom": "Jean",
+      "telephone": "0123456789",
+      "email": "jean.dupont@example.com",
+      "mot_de_passe": "motdepasse1",
+      "admin": 0
+    },
+    {
+      "nom": "Martin",
+      "prenom": "Sophie",
+      "telephone": "9876543210",
+      "email": "sophie.martin@example.com",
+      "mot_de_passe": "motdepasse2",
+      "admin": 1
+    },
+    {
+      "nom": "Lefebvre",
+      "prenom": "Pierre",
+      "telephone": "0234567891",
+      "email": "pierre.lefebvre@example.com",
+      "mot_de_passe": "motdepasse3",
+      "admin": 0
+    },
+    {
+      "nom": "Dubois",
+      "prenom": "Marie",
+      "telephone": "0912345678",
+      "email": "marie.dubois@example.com",
+      "mot_de_passe": "motdepasse4",
+      "admin": 0
+    },
+    {
+      "nom": "Thomas",
+      "prenom": "Julie",
+      "telephone": "0123456789",
+      "email": "julie.thomas@example.com",
+      "mot_de_passe": "motdepasse5",
+      "admin": 0
+    },
+    {
+      "nom": "Robert",
+      "prenom": "Alexandre",
+      "telephone": "0678901234",
+      "email": "alexandre.robert@example.com",
+      "mot_de_passe": "motdepasse6",
+      "admin": 0
+    },
+    {
+      "nom": "Richard",
+      "prenom": "Laura",
+      "telephone": "0987654321",
+      "email": "laura.richard@example.com",
+      "mot_de_passe": "motdepasse7",
+      "admin": 0
+    },
+    {
+      "nom": "Garcia",
+      "prenom": "Antoine",
+      "telephone": "0456789123",
+      "email": "antoine.garcia@example.com",
+      "mot_de_passe": "motdepasse8",
+      "admin": 0
+    },
+    {
+      "nom": "Petit",
+      "prenom": "Emma",
+      "telephone": "0567891234",
+      "email": "emma.petit@example.com",
+      "mot_de_passe": "motdepasse9",
+      "admin": 0
+    },
+    {
+      "nom": "Roy",
+      "prenom": "Louis",
+      "telephone": "0890123456",
+      "email": "louis.roy@example.com",
+      "mot_de_passe": "motdepasse10",
+      "admin": 0
+    }
+  ]
