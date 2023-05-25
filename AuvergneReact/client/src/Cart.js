@@ -1,21 +1,23 @@
 import React from 'react';
-import './css/Cart.css';
 
-const Cart = () => {
+const Cart = ({ items }) => {
+  const isEmpty = items.length === 0;
+
   return (
-    <div className="panier-container">
-      <h1>Panier</h1>
-      <div className="item">
-        <span>Nom du produit</span>
-        <span>Prix</span>
-        <span>Quantité</span>
-        <span>Total</span>
-      </div>
-      {/* Ajoutez ici la liste des éléments du panier */}
-      <div className="total">
-        <span>Total :</span>
-        <span>Montant total</span>
-      </div>
+    <div className="cart-container">
+      <h2>Panier</h2>
+      {isEmpty ? (
+        <p>Le panier est vide.</p>
+      ) : (
+        <>
+          <ul>
+            {items.map((item, index) => (
+              <li key={index}>{item.nom}</li>
+            ))}
+          </ul>
+          <button className="valider-panier">Valider mon panier</button>
+        </>
+      )}
     </div>
   );
 };
