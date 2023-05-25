@@ -9,6 +9,8 @@ import Login from './Login';
 import Cart from './Cart';
 import MyAccount from './MyAccount';
 import ProductList from './ProductList';
+import AdminHome from './AdminHome';
+
 
 const App = () => {
   return (
@@ -21,6 +23,7 @@ const App = () => {
         <Route exact path="/panier" element={<Cart />} />
         <Route exact path="/mon-compte" element={<MyAccount />} />
         <Route exact path="/produits" element={<ProductList />} />
+        <Route exact path="/administration" element={<AdminHome />} />
       </Routes>
       <Footer/>
     </BrowserRouter>
