@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import mockItems from '../src/mock_items.json';
+import './css/AdminHome.css';
+import axios from 'axios';
 
 const AdminProduct = () => {
   const [products, setProducts] = useState([]);
@@ -12,32 +13,54 @@ const AdminProduct = () => {
     quantité: '',
   });
 
-  // Charger les données des produits depuis le fichier JSON
+  // Charger les données des produits depuis l'API
   useEffect(() => {
-    setProducts(mockItems);
+    fetchProducts();
   }, []);
 
+  // Fonction pour charger les produits depuis l'API
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/items/items');
+      setProducts(response.data);
+    } catch (error) {
+      console.error('Erreur lors du chargement des produits:', error);
+    }
+  };
+
   // Fonction pour ajouter un produit
-  const addProduct = () => {
+  const addProduct = async () => {
     if (newProduct.nom && newProduct.prix && newProduct.image && newProduct.description && newProduct.quantité) {
-      const updatedProducts = [...products, newProduct];
-      setProducts(updatedProducts);
-      setShowModal(false);
-      setNewProduct({
-        nom: '',
-        prix: '',
-        image: '',
-        description: '',
-        quantité: '',
-      });
+      try {
+        const response = await axios.post('http://localhost:5000/items/items', newProduct);
+        const createdProduct = response.data;
+        const updatedProducts = [...products, createdProduct];
+        setProducts(updatedProducts);
+        setShowModal(false);
+        setNewProduct({
+          nom: '',
+          prix: '',
+          image: '',
+          description: '',
+          quantité: '',
+        });
+      } catch (error) {
+        console.error('Erreur lors de l\'ajout du produit:', error);
+      }
     }
   };
 
   // Fonction pour supprimer un produit
-  const deleteProduct = index => {
-    const updatedProducts = [...products];
-    updatedProducts.splice(index, 1);
-    setProducts(updatedProducts);
+  // Fonction pour supprimer un produit
+  const deleteProduct = async (id, index) => {
+    try {
+      await axios.delete(`http://localhost:5000/items/:id`);
+      const updatedProducts = [...products];
+      updatedProducts.splice(index, 1);
+      setProducts(updatedProducts);
+    } catch (error) {
+      console.error('Erreur lors de la suppression du produit:', error);
+    }
   };
 
   return (
@@ -54,31 +77,31 @@ const AdminProduct = () => {
               type="text"
               placeholder="Nom du produit"
               value={newProduct.nom}
-              onChange={e => setNewProduct({ ...newProduct, nom: e.target.value })}
+              onChange={(e) => setNewProduct({ ...newProduct, nom: e.target.value })}
             />
             <input
               type="text"
               placeholder="Prix"
               value={newProduct.prix}
-              onChange={e => setNewProduct({ ...newProduct, prix: e.target.value })}
+              onChange={(e) => setNewProduct({ ...newProduct, prix: e.target.value })}
             />
             <input
               type="text"
               placeholder="URL de l'image"
               value={newProduct.image}
-              onChange={e => setNewProduct({ ...newProduct, image: e.target.value })}
+              onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
             />
             <input
               type="text"
               placeholder="Description"
               value={newProduct.description}
-              onChange={e => setNewProduct({ ...newProduct, description: e.target.value })}
+              onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
             />
             <input
               type="text"
               placeholder="Quantité"
               value={newProduct.quantité}
-              onChange={e => setNewProduct({ ...newProduct, quantité: e.target.value })}
+              onChange={(e) => setNewProduct({ ...newProduct, quantité: e.target.value })}
             />
             <div className="modal-buttons">
               <button className="add-button" onClick={addProduct}>
@@ -107,7 +130,7 @@ const AdminProduct = () => {
               <tr key={index}>
                 <td>{product.nom}</td>
                 <td>{product.prix}</td>
-                <td>{product.quantité}</td>
+                <td>{product.quantite}</td>
                 <td>
                   <button onClick={() => deleteProduct(index)}>Supprimer</button>
                 </td>

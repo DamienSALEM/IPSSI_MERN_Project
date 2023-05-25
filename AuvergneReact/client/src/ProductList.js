@@ -64,9 +64,7 @@ const ProductList = () => {
 
   const handleValidCart = async () => {
     try {
-      for (const item of cartItems) {
-        await axios.put('http://localhost:5000/items/items/cart', item);
-      }
+        await axios.put('http://localhost:5000/items/items/cart', cartItems);
       console.log('Panier validé avec succès !');
     } catch (error) {
       console.log('Erreur lors de la validation du panier :', error);
