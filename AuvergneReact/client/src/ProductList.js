@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import mockItems from '../src/mock_items.json';
+import axios from 'axios';
 import './css/ProductList.css';
 
 const ProductList = () => {
@@ -7,11 +7,17 @@ const ProductList = () => {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    const storedCartItems = localStorage.getItem('cartItems');
-    if (storedCartItems) {
-      setCartItems(JSON.parse(storedCartItems));
-    }
-    setArticles(mockItems);
+    const fetchArticles = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/items/items');
+        console.log('Data recup')
+        setArticles(response.data);
+      } catch (error) {
+        console.log('Erreur lors de la récupération des articles depuis l\'API :', error);
+      }
+    };
+
+    fetchArticles();
   }, []);
 
   useEffect(() => {
@@ -56,6 +62,17 @@ const ProductList = () => {
     );
   };
 
+  const handleValidCart = async () => {
+    try {
+      for (const item of cartItems) {
+        await axios.put('http://localhost:5000/items/items/cart', item);
+      }
+      console.log('Panier validé avec succès !');
+    } catch (error) {
+      console.log('Erreur lors de la validation du panier :', error);
+    }
+  };
+
   return (
     <div className="product-list-container">
       <h1>Liste des Articles</h1>
@@ -75,6 +92,9 @@ const ProductList = () => {
               </li>
             ))}
           </ul>
+        )}
+        {cartItems.length > 0 && (
+          <button onClick={handleValidCart}>Valider Panier</button>
         )}
       </div>
       {articles.map((article) => (
