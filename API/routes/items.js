@@ -25,4 +25,13 @@ router
     .then(resultat=>res.json({message:"item deleted"}))
     .catch(err=>res.status(404).json({error:"error in deletion"}))
   })
+  .put("/items/cart",(req,res)=>{
+    req.body.forEach(item => {
+      item_data=items.findById(item.id)
+      item["quantite"]=item_data.quantite-1
+      items.findByIdAndUpdate(item.id,item)
+    .catch(err=>res.status(400).json({error:"update failed"}))
+    }).then(resultat=>res.json({message:"cart buyed"}))
+    .catch(err=>res.status(400).json({error:"update failed"}));
+  })
 module.exports = router;
