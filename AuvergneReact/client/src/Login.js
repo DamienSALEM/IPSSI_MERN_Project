@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './css/Login.css';
-import ProductList from './ProductList';
 import users from '../src/mock_users.json';
 
-const Login = () => {
+const Login = ({setLoggedIn}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
@@ -28,10 +26,6 @@ const Login = () => {
       console.log('Identifiants invalides');
     }
   };
-
-  if (isLoggedIn) {
-    return <ProductList />;
-  }
 
   return (
     <div className="login-container">

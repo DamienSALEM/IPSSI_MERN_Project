@@ -7,8 +7,6 @@ import NavbarIsLoggin from './NavbarIsLoggin.js';
 import Home from './Home';
 import Signup from './Signup';
 import Login from './Login';
-import Cart from './Cart';
-import MyAccount from './MyAccount';
 import ProductList from './ProductList';
 import AdminHome from './AdminHome';
 import AdminProducts from './AdminProducts';
@@ -16,10 +14,6 @@ import AdminUsers from './AdminUsers.js';
 
 const App = () => {
   const [isLoggedIn, setLoggedIn] = useState(false);
-
-  const handleLogin = () => {
-    setLoggedIn(true);
-  };
 
   return (
     <BrowserRouter>
@@ -36,10 +30,8 @@ const App = () => {
         <Route
           exact
           path="/connexion"
-          element={<Login onLogin={handleLogin} />}
+          element={<Login setLoggedIn= {setLoggedIn} />}
         />
-        <Route exact path="/panier" element={<Cart />} />
-        <Route exact path="/mon-compte" element={<MyAccount />} />
         <Route exact path="/produits" element={<ProductList />} />
         <Route exact path="/administration" element={<AdminHome />} />
         <Route
