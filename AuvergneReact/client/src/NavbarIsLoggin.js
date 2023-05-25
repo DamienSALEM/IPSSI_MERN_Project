@@ -8,10 +8,7 @@ const NavbarIsLoggin = () => {
           <a href="/produits" style={linkStyles}>Liste des produits</a>
         </li>
         <li style={liStyles}>
-          <a href="/panier" style={linkStyles}>Panier</a>
-        </li>
-        <li style={liStyles}>
-          <a href="/mon-compte" style={linkStyles}>Mon Compte</a>
+          <a href="/deconnexion" style={linkStyles}>Deconnexion</a>
         </li>
       </ul>
     </nav>
