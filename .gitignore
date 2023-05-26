@@ -131,3 +131,9 @@ dist
 
 # vscode config
 .vscode
+*.png
+*.svg
+*.jpg 
+*.webp
+*.jfif
+*.avif
